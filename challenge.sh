@@ -17,7 +17,7 @@ execTerraform () {
       echo "Terraform apply ${repo} success"
     else
       echo "Terraform apply ${repo} failed"
-      terraform destroy -auto-approve
+      #terraform destroy -auto-approve
       exit 1
     fi
     cd ..

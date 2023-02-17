@@ -1,4 +1,18 @@
 #!/bin/bash
+usage ()
+{
+  echo "Usage: ${0} AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY"
+}
+if [ -z ${1} ] ; then
+  echo "==> Error: AWS_ACCESS_KEY_ID is required"
+  usage
+  exit 1
+fi
+if [ -z ${2} ] ; then
+  echo "==> Error: AWS_SECRET_ACCESS_KEY is required"
+  usage
+  exit 1
+fi
 #generar nombre aleatorio to lower case
 randomName=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 4 | tr '[:upper:]' '[:lower:]' | head -n 1)
 dockerName="challenge-${randomName}"
