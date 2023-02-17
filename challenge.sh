@@ -39,5 +39,6 @@ get_datos ()
 main () {
   cloneRepos
   execTerraform
+  get_datos
 }
 main "$@"

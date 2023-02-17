@@ -32,5 +32,5 @@ docker logs -f ${dockerName}
 echo "==> Info: Stopping and removing docker container"
 
 #una ves terminado el docker si se quiere ejecutar comando a mano dentro del container ejecutar el siguiente comando
-#docker commit 373973d6bc53 challenge--debug
-# docker run -ti --entrypoint=sh  challenge--debug
+#docker commit 373973d6bc53 challenge-debug
+#docker run -ti --entrypoint=sh  challenge-debug
