@@ -4,6 +4,7 @@ ARG terraformVersion=1.3.9
 ARG kubectlVersion=1.21.0
 #install aws cli, terraform, and kubectl
 #RUN apt-get update && apt-get install git -y 
+# install kustomize 
 RUN apt-get update && apt-get install -y \
     curl \
     unzip \
@@ -17,9 +18,11 @@ RUN apt-get update && apt-get install -y \
     && curl -LO https://storage.googleapis.com/kubernetes-release/release/v${kubectlVersion}/bin/linux/amd64/kubectl \
     && chmod +x ./kubectl \
     && mv ./kubectl /usr/local/bin/kubectl \
+    && curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash \
+    && mv kustomize /usr/local/bin/kustomize \
     && chmod 755 /challenge.sh
 
 # entry point for the container
-#CMD ["/challenge.sh"]
+CMD ["/challenge.sh"]
 
 #ENTRYPOINT ["/challenge.sh"]

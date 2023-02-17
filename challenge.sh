@@ -24,6 +24,18 @@ execTerraform () {
   done
 }
 
+get_datos ()
+{
+  echo "==> Info: Getting url argocd from cluster eks"
+  for i in dev tst prd ; do
+    aws eks update-kubeconfig --name eks-cluster-${i} --region eu-west-1
+    urlArgocd=$(kubectl get svc argocd-server -n argocd -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+    argoPass=$(kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d)
+    echo "==> Info: Url argocd del entorno de ${i} is ${urlArgocd}"
+    echo "==> Info: Password argocd del entorno de ${i} is ${argoPass}"
+  done
+
+}
 main () {
   cloneRepos
   execTerraform
